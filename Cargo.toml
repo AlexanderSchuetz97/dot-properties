@@ -3,6 +3,7 @@ name = "dot-properties"
 description = "Simple crate to read and write .properties files."
 version = "0.1.0"
 authors = ["Speykious <speykious@gmail.com>"]
+repository = "https://github.com/Speykious/dot-properties"
 edition = "2021"
 
 [dependencies]
