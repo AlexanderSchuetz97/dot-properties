@@ -23,6 +23,12 @@ impl From<HashMap<String, String>> for Properties {
     }
 }
 
+impl From<Properties> for HashMap<String, String> {
+    fn from(value: Properties) -> Self {
+        value.0
+    }
+}
+
 impl Properties {
     /// Gets the corresponding value for a property key.
     pub fn get_property<'a>(&self, key: &'a str) -> Result<&'_ str, PropertyNotFoundError<'a>> {
@@ -35,6 +41,11 @@ impl Properties {
     /// Sets a value for a property key.
     pub fn set_property(&mut self, key: String, value: String) -> Option<String> {
         self.0.insert(key, value)
+    }
+
+    /// Returns an iterator over all keys in the Properties map.
+    pub fn keys(&self) -> impl Iterator<Item = &String> {
+        self.0.keys()
     }
 
     pub fn write_without_spaces<W: Write>(&self, writer: &mut W) -> Result<(), io::Error> {
